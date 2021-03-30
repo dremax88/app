@@ -7,7 +7,7 @@ namespace classes;
 class initialization
 {
     private static $init;
-    private static $info;
+    protected static $info;
 
     private function __construct()
     {
