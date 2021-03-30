@@ -24,7 +24,7 @@ class initialization
         // TODO: Implement __wakeup() method.
     }
 
-    public static function getInit($arrToDump)
+    public static function getInit()
     {
         if(self::$init===null){
             self::$init=new self();
