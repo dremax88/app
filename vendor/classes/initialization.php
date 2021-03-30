@@ -56,7 +56,7 @@ class initialization
         if($arrDump['key']===$arUser['UF_KEY'])
         {
             $res = $arrDump;
-            var_dump($res);
+            var_dump($res );
         }
         else
         {
