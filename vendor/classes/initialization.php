@@ -34,6 +34,9 @@ class initialization
 
     public static function parseArr($arrDump)
     {
+
+        Loader::includeModule("iblock");
+        Loader::includeModule("main");
         global $USER;
 
         $filter   = ["ID" => 1112];
@@ -49,8 +52,7 @@ class initialization
             $arHund = $arUser;
         }
 
-        Loader::includeModule("iblock");
-        Loader::includeModule("main");
+
 
         if($arrDump['key']===$arHund['UF_KEY'])
         {
