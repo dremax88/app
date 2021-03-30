@@ -33,7 +33,7 @@ class initialization
         return self::$init;
     }
 
-    protected function parseArr($value){
+    protected static function parseArr($value){
         return $value;
     }
 
