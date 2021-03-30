@@ -17,19 +17,20 @@ use Bitrix\Main\Loader;
 Loader::includeModule('iblock');
 
 // функция-рефакторинг повторения в исполнительном скрипте
-function processGetInfo($userID, $typeLink, $initialization){
+function processGetInfo($userID, $typeLink, $initialization)
+    {
 
-    $arrLink=$initialization::generateUfLink($userID, $typeLink);
-    $fields = [$typeLink => $arrLink[$typeLink]];
-    $user = new CUser;
-    $user->Update($userID, $fields);
-    $arrForJson=[
-        'status'=>'OK',
-        'request_url'=>$arrLink['link']
-    ];
-    return $arrForJson;
+        $arrLink=$initialization::generateUfLink($userID, $typeLink);
+        $fields = [$typeLink => $arrLink[$typeLink]];
+        $user = new CUser;
+        $user->Update($userID, $fields);
+        $arrForJson=[
+            'status'=>'OK',
+            'request_url'=>$arrLink['link']
+        ];
+        return $arrForJson;
 
-}
+    }
 
 //запуск патерна одиночки для инициализации соединения и получения данных с проверкой Api-key
 $initialization=initialization::getInit();
@@ -49,28 +50,29 @@ else
 // проверили тип анкеты сгенерировали ссылку, через функцию-рефактор
 // 1) создали массив и загрузили в массив ссылок
 // 2) на выходе создали json ответ подгрузили в соответсвующий элемент инфоблока
-switch ($_REQUEST['type_reg']){
+switch ($_REQUEST['type_reg'])
+    {
 
-    case 'negative':
-        $typeLink='UF_LINK';
-        $arrForJson=processGetInfo($userID,$typeLink,$initialization);
-        break;
+        case 'negative':
+            $typeLink='UF_LINK';
+            $arrForJson=processGetInfo($userID,$typeLink,$initialization);
+            break;
 
-    case 'personal':
-        echo $typeLink='UF_SOTR_LINK';
-        $arrForJson=processGetInfo($userID,$typeLink,$initialization);
-        break;
+        case 'personal':
+            echo $typeLink='UF_SOTR_LINK';
+            $arrForJson=processGetInfo($userID,$typeLink,$initialization);
+            break;
 
-    case 'advanced':
-        $typeLink='UF_KADRSH';
-        $arrForJson=processGetInfo($userID,$typeLink,$initialization);
-        break;
+        case 'advanced':
+            $typeLink='UF_KADRSH';
+            $arrForJson=processGetInfo($userID,$typeLink,$initialization);
+            break;
 
-    default:
-        $arrForJson=false;
-        break;
+        default:
+            $arrForJson=false;
+            break;
 
-}
+    }
 
 //В случае успеха вывели json-ответ
 if($arrForJson!==false)
