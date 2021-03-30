@@ -41,7 +41,7 @@ class initialization
 
         $arFilter=['ID'=>1112];
         $arSelect=['ID','UF_KEY'];
-        $result = Bitrix\Main\UserTable::getList([
+        $result = Main\UserTable::getList([
 
             'filter' => $arFilter,
 
