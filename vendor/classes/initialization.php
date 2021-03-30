@@ -54,6 +54,7 @@ class initialization
         };
 
 
+        print_r($arUser);
 
         if($arrDump['key']===$arUser['UF_KEY'])
         {
