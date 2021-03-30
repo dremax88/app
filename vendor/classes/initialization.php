@@ -3,6 +3,7 @@
 
 namespace classes;
 
+
 class initialization
 {
     private static $init;
@@ -33,9 +34,9 @@ class initialization
 
     public static function parseArr($arrDump)
     {
-        require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
-        Bitrix\Main\Loader::includeModule("iblock");
-        Bitrix\Main\Loader::includeModule("main");
+
+        \Bitrix\Main\Loader::includeModule("iblock");
+        \Bitrix\Main\Loader::includeModule("main");
 
 
         $filter   = ["ID" => 1112];
