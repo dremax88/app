@@ -49,12 +49,15 @@ class initialization
 
         ]);
 
-        if ($arUroup = $result->fetch()) return;
+        while  ($arUroup = $result->fetch()) {
+            $arUser=$arUroup;
+        };
 
 
 
-        if($arrDump['key']===$arUroup['UF_KEY'])
+        if($arrDump['key']===$arUser['UF_KEY'])
         {
+            print_r($arUser);
             $res = $arrDump;
         }
         else
