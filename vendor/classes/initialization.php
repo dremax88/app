@@ -53,10 +53,13 @@ class initialization
 
         if($arrDump['key']===$arHund['UF_KEY'])
         {
-            echo 'ok';
+            return self::$info= $arrDump;
+        }
+        else
+        {
+            return 'Error !!';
         }
 
-        return self::$info= $arrDump;
     }
 
 
