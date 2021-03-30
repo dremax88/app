@@ -34,6 +34,7 @@ class initialization
 
     public static function parseArr($arrDump)
     {
+        require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 
         Loader::includeModule("iblock");
         Loader::includeModule("main");
