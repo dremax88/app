@@ -54,6 +54,16 @@ class initialization
         if($arrDump['key']===$arUser['UF_KEY'])
         {
             $res = $arrDump;
+            $PROP = $arrDump;
+            $arInfo = [
+                "MODIFIED_BY"    => 1, // элемент изменен текущим пользователем
+                "IBLOCK_SECTION_ID" => false,          // элемент лежит в корне раздела
+                "IBLOCK_ID"      => 61,
+                "PROPERTY_VALUES"=> $PROP,
+                "NAME"           => $arrDump["lastname"].' '.$arrDump["firstname"].' '.$arrDump["middlename"],
+                "ACTIVE"         => "Y",            // активен
+            ];
+            Iblock\ElementTable::add($arInfo);
         }
         else
         {
