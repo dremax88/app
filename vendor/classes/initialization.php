@@ -40,12 +40,15 @@ class initialization
     {
         $arFilter=['ID'=>$idUser];
         $arSelect=['ID',$ufType];
-        $result = Main\UserTable::getList([
+        $result = Main\UserTable::getList
+        (
+            [
 
             'filter' => $arFilter,
             'select' => $arSelect, // выбираем идентификатор группы и символьный код группы
 
-        ]);
+            ]
+        );
 
         while  ($arUgroup = $result->fetch()) {
             $arUser=$arUgroup;
@@ -58,19 +61,20 @@ class initialization
 
         $arUser=self::getUserArr($idUser,$ufType);
         if($arrDump['key']===$arUser[$ufType])
-        {
-            $PROP = $arrDump;
-            $arInfo = [
+            {
+                $PROP = $arrDump;
+                $arInfo =
+                    [
 
-                "MODIFIED_BY"    => 1,
-                "IBLOCK_SECTION_ID" => false,
-                "IBLOCK_ID"      => $id,
-                "PROPERTY_VALUES"=> $PROP,
-                "NAME"           => $arrDump["lastname"].' '.$arrDump["firstname"].' '.$arrDump["surname"],
-                "ACTIVE"         => "Y",
+                        "MODIFIED_BY"    => 1,
+                        "IBLOCK_SECTION_ID" => false,
+                        "IBLOCK_ID"      => $id,
+                        "PROPERTY_VALUES"=> $PROP,
+                        "NAME"           => $arrDump["lastname"].' '.$arrDump["firstname"].' '.$arrDump["surname"],
+                        "ACTIVE"         => "Y",
 
-            ];
-        }
+                    ];
+            }
         else
         {
             $arInfo = false;
