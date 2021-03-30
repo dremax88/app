@@ -29,11 +29,11 @@ class initialization
         if(self::$init===null){
             self::$init=new self();
         }
-
         return self::$init;
     }
 
     public static function parseArr($value){
+
         return self::$info= $value;
     }
 
