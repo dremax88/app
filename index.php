@@ -3,8 +3,9 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_befo
 require_once ($_SERVER["DOCUMENT_ROOT"].'/app/vendor/autoload.php');
 
 use \classes\initialization;
+use Bitrix;
 use Bitrix\Main\Loader;
-use Bitrix\Iblock;
+
 Loader::includeModule('iblock');
 
 $a=initialization::getInit();
@@ -19,4 +20,4 @@ $arInfo = [
     "NAME"           => $_REQUEST["lastname"].' '.$_REQUEST["firstname"].' '.$_REQUEST["surname"],
     "ACTIVE"         => "Y",            // активен
 ];
-Iblock\ElementTable::add($arInfo);
+Bitrix\Iblock\IblockTable::add($arInfo);
