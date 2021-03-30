@@ -39,16 +39,15 @@ class initialization
         Loader::includeModule("iblock");
         Loader::includeModule("main");
 
+        $arFilter=['ID'=>1112];
+        $arSelect=['ID','UF_KEY'];
+        $result = Bitrix\Main\UserTable::getList([
 
-        $result = Main\UserGroupTable::getList(array(
+            'filter' => $arFilter,
 
-            'filter' => array('USER_ID'=>1112,'GROUP.ACTIVE'=>'Y'),
+            'select' => $arSelect, // выбираем идентификатор группы и символьный код группы
 
-            'select' => array('USER_ID','UF_KEY'), // выбираем идентификатор группы и символьный код группы
-
-            'order' => array('GROUP.C_SORT'=>'ASC'), // сортируем в соответствии с сортировкой групп
-
-        ));
+        ]);
 
         while ($arGroup = $result->fetch())
 
