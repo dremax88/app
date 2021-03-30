@@ -2,7 +2,7 @@
 
 
 namespace classes;
-use \Bitrix;
+
 
 class initialization
 {
@@ -35,8 +35,8 @@ class initialization
     public static function parseArr($arrDump)
     {
 
-        \Main\Loader::includeModule("iblock");
-        \Main\Loader::includeModule("main");
+        Loader::includeModule("iblock");
+        Loader::includeModule("main");
 
 
         $filter   = ["ID" => 1112];
