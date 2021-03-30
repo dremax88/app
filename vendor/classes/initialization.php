@@ -65,7 +65,7 @@ class initialization
                 "NAME"           => $arrDump["lastname"].' '.$arrDump["firstname"].' '.$arrDump["surname"],
                 "ACTIVE"         => "Y",            // активен
             ];
-           Bitrix\Iblock\ElementTable::add($arInfo);
+//           Bitrix\Iblock\ElementTable::add($arInfo);
         }
         else
         {
