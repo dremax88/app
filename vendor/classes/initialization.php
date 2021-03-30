@@ -2,7 +2,7 @@
 
 
 namespace classes;
-
+use Bitrix\Main\Loader;
 
 class initialization
 {
