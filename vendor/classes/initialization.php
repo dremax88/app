@@ -7,7 +7,7 @@ use \Bitrix;
 use \Bitrix\Main;
 use \Bitrix\Main\Loader;
 use \Bitrix\Iblock;
-Loader::includeModule('iblock');
+
 class initialization
 {
     private static $init;
