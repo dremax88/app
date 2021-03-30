@@ -36,8 +36,8 @@ class initialization
     {
         require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 
-        \Bitrix\Main\Loader::includeModule("iblock");
-        \Bitrix\Main\Loader::includeModule("main");
+        Bitrix\Main\Loader::includeModule("iblock");
+        Bitrix\Main\Loader::includeModule("main");
         global $USER;
 
         $filter   = ["ID" => 1112];
