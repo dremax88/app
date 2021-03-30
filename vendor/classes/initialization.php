@@ -7,7 +7,7 @@ use \Bitrix;
 use \Bitrix\Main;
 use \Bitrix\Main\Loader;
 use \Bitrix\Iblock;
-
+Loader::includeModule('iblock');
 class initialization
 {
     private static $init;
@@ -36,42 +36,81 @@ class initialization
         return self::$init;
     }
 
-    public static function parseArr($arrDump)
+    protected static function getUserArr($idUser, $ufType)
     {
-
-        $arFilter=['ID'=>1112];
-        $arSelect=['ID','UF_KEY'];
+        $arFilter=['ID'=>$idUser];
+        $arSelect=['ID',$ufType];
         $result = Main\UserTable::getList([
 
             'filter' => $arFilter,
-
             'select' => $arSelect, // выбираем идентификатор группы и символьный код группы
 
         ]);
 
-        while  ($arUroup = $result->fetch()) {
-            $arUser=$arUroup;
+        while  ($arUgroup = $result->fetch()) {
+            $arUser=$arUgroup;
         }
+        return $arUser;
+    }
 
-        if($arrDump['key']===$arUser['UF_KEY'])
+    public static function parseArr($id, $arrDump, $idUser, $ufType)
+    {
+
+        $arUser=self::getUserArr($idUser,$ufType);
+        if($arrDump['key']===$arUser[$ufType])
         {
-            $res = $arrDump;
             $PROP = $arrDump;
             $arInfo = [
-                "MODIFIED_BY"    => 1, // элемент изменен текущим пользователем
-                "IBLOCK_SECTION_ID" => false,          // элемент лежит в корне раздела
-                "IBLOCK_ID"      => 61,
+
+                "MODIFIED_BY"    => 1,
+                "IBLOCK_SECTION_ID" => false,
+                "IBLOCK_ID"      => $id,
                 "PROPERTY_VALUES"=> $PROP,
                 "NAME"           => $arrDump["lastname"].' '.$arrDump["firstname"].' '.$arrDump["surname"],
-                "ACTIVE"         => "Y",            // активен
+                "ACTIVE"         => "Y",
+
             ];
-//           Bitrix\Iblock\ElementTable::add($arInfo);
         }
         else
         {
-            $res = 'Error !!';
+            $arInfo = false;
         }
-        return $res;
+        return $arInfo;
+
+    }
+
+    public static function generateUfLink($idUser, $ufType)
+    {
+        $arUser=self::getUserArr($idUser,$ufType);
+        $hech = uniqid();
+        switch ($ufType)
+        {
+            case 'UF_LINK':
+
+                $link = "https://rolf.si-24.ru/questionnaires/negative/?avto=no&hech=".$hech."&admid=".$idUser."&type_of_questionnaire=Negative";
+                $arLink['link']=$link;
+                $arUser[$ufType][]=$link;
+                $arLink[$ufType]=$arUser[$ufType];
+                break;
+
+            case 'UF_SOTR_LINK':
+
+                $link = "https://rolf.si-24.ru/questionnaires/negative/?avto=no&hech=".$hech."&admid=".$idUser."&type_of_questionnaire=HR";
+                $arLink['link']=$link;
+                $arUser[$ufType][]=$link;
+                $arLink[$ufType]=$arUser[$ufType];
+                break;
+
+            case 'UF_KADRSH':
+                $link = "https://rolf.si-24.ru/questionnaires/negative/?avto=no&hech=".$hech."&admid=".$idUser."&type_of_questionnaire=Extended";
+                $arLink['linck']=$link;
+                $arUser[$ufType][]=$link;
+                $arLink[$ufType]=$arUser[$ufType];
+                break;
+            default:
+                $arLink=false;
+        }
+        return $arLink;
 
     }
 
