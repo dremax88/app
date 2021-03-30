@@ -18,4 +18,4 @@ $arInfo = [
     "NAME"           => $_REQUEST["lastname"].' '.$_REQUEST["firstname"].' '.$_REQUEST["surname"],
     "ACTIVE"         => "Y",            // активен
 ];
-Bitrix\Iblock\ElementTable::add($arInfo);
+Iblock\ElementTable::add($arInfo);
