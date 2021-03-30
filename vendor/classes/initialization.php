@@ -49,24 +49,20 @@ class initialization
 
         ]);
 
-        while ($arGroup = $result->fetch())
+        if ($arUroup = $result->fetch()) return;
 
+
+
+
+
+        if($arrDump['key']===$arUroup['UF_KEY'])
         {
-
-            print_r($arGroup);
-
+            return self::$info= $arrDump;
         }
-
-
-
-//        if($arrDump['key']===$arHund['UF_KEY'])
-//        {
-//            return self::$info= $arrDump;
-//        }
-//        else
-//        {
-//            return 'Error !!';
-//        }
+        else
+        {
+            return 'Error !!';
+        }
 
     }
 
