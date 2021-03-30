@@ -5,4 +5,4 @@ use \classes\initialization;
 
 $a=initialization::getInit($_REQUEST);
 
-print_r($a);
+var_dump($a);
