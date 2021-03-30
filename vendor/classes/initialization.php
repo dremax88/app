@@ -4,6 +4,7 @@
 namespace classes;
 use \Bitrix\Main;
 use \Bitrix\Main\Loader;
+use \Bitrix\Iblock;
 
 class initialization
 {
@@ -35,9 +36,6 @@ class initialization
 
     public static function parseArr($arrDump)
     {
-
-        Loader::includeModule("iblock");
-        Loader::includeModule("main");
 
         $arFilter=['ID'=>1112];
         $arSelect=['ID','UF_KEY'];
