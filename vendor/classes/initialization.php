@@ -55,12 +55,13 @@ class initialization
 
         if($arrDump['key']===$arUroup['UF_KEY'])
         {
-            return self::$info= $arrDump;
+            $res = $arrDump;
         }
         else
         {
-            return 'Error !!';
+            $res = 'Error !!';
         }
+        return self::$info= $res;
 
     }
 
