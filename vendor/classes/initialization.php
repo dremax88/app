@@ -51,7 +51,7 @@ class initialization
 
         if ($arUroup = $result->fetch()) return;
 
-        print_r($arrDump) ;
+
 
         if($arrDump['key']===$arUroup['UF_KEY'])
         {
@@ -61,7 +61,7 @@ class initialization
         {
             $res = 'Error !!';
         }
-        return self::$info= $res;
+        return $arrDump;
 
     }
 
