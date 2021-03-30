@@ -24,17 +24,16 @@ class initialization
         // TODO: Implement __wakeup() method.
     }
 
-    public static function getInit($arrToDump)
+    public static function getInit()
     {
         if(self::$init===null){
             self::$init=new self();
         }
-        self::$info=self::parseArr($arrToDump);
         return self::$init;
     }
 
-    protected static function parseArr($value){
-        return $value;
+    public static function parseArr($arrToDump){
+        return self::$info=$arrToDump;
     }
 
 
