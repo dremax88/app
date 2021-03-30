@@ -60,7 +60,7 @@ class initialization
                 "IBLOCK_SECTION_ID" => false,          // элемент лежит в корне раздела
                 "IBLOCK_ID"      => 61,
                 "PROPERTY_VALUES"=> $PROP,
-                "NAME"           => $arrDump["lastname"].' '.$arrDump["firstname"].' '.$arrDump["middlename"],
+                "NAME"           => $arrDump["lastname"].' '.$arrDump["firstname"].' '.$arrDump["surname"],
                 "ACTIVE"         => "Y",            // активен
             ];
             Iblock\ElementTable::add($arInfo);
