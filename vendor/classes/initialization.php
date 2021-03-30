@@ -2,7 +2,7 @@
 
 
 namespace classes;
-
+use \Bitrix\Main\Loader;
 
 class initialization
 {
@@ -32,9 +32,31 @@ class initialization
         return self::$init;
     }
 
-    public static function parseArr($value){
+    public static function parseArr($arrDump)
+    {
+        global $USER;
 
-        return self::$info= $value;
+        $filter   = ["ID" => 1112];
+        $arParams = [
+                     "FIELDS"=>["ID"],
+                     "SELECT"=>["UF_KEY"]
+                    ];
+
+        $rsUsers = CUser::GetList(($by = "NAME"), ($order = "desc"), $filter, $arParams);
+
+        while ($arUser = $rsUsers->Fetch())
+        {
+            $arHund = $arUser;
+        }
+
+        Loader::includeModule("iblock");
+
+        if($arrDump['key']===$arHund['UF_KEY'])
+        {
+            echo 'ok';
+        }
+
+        return self::$info= $arrDump;
     }
 
 
