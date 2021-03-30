@@ -50,6 +50,7 @@ class initialization
         }
 
         Loader::includeModule("iblock");
+        Loader::includeModule("main");
 
         if($arrDump['key']===$arHund['UF_KEY'])
         {
