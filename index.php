@@ -7,5 +7,4 @@ use Bitrix\Main\Loader;
 
 $a=initialization::getInit();
 $a=$a::parseArr($_REQUEST);
-
 var_dump($a);

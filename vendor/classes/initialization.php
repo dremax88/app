@@ -53,19 +53,15 @@ class initialization
             $arUser=$arUroup;
         };
 
-
-        print_r($arUser);
-        print_r($arrDump);
         if($arrDump['key']===$arUser['UF_KEY'])
         {
-            print_r($arUser);
             $res = $arrDump;
         }
         else
         {
             $res = 'Error !!';
         }
-        return $arrDump;
+        return $res;
 
     }
 
