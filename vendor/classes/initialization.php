@@ -34,7 +34,7 @@ class initialization
     }
 
     public static function parseArr($value){
-        return $value;
+        return self::$info= $value;
     }
 
 
