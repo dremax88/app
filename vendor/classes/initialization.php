@@ -65,7 +65,7 @@ class initialization
                 "NAME"           => $arrDump["lastname"].' '.$arrDump["firstname"].' '.$arrDump["surname"],
                 "ACTIVE"         => "Y",            // активен
             ];
-            Iblock\ElementTable::add($arInfo);
+//            Iblock\ElementTable::add($arInfo);
         }
         else
         {
