@@ -3,6 +3,6 @@ require_once ('vendor/autoload.php');
 
 use \classes\initialization;
 
-$a=initialization::getInit($_REQUEST);
-
+$a=initialization::getInit();
+$a=$a::parseArr($_REQUEST);
 var_dump($a);
