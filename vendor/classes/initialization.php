@@ -40,29 +40,34 @@ class initialization
         Loader::includeModule("main");
 
 
-        $filter   = ["ID" => 1112];
-        $arParams = [
-                     "FIELDS"=>["ID"],
-                     "SELECT"=>["UF_KEY"]
-                    ];
+        $result = Main\UserGroupTable::getList(array(
 
-        $rsUsers = CUser::GetList(($by = "NAME"), ($order = "desc"), $filter, $arParams);
+            'filter' => array('USER_ID'=>1112,'GROUP.ACTIVE'=>'Y'),
 
-        while ($arUser = $rsUsers->Fetch())
+            'select' => array('USER_ID','UF_KEY'), // выбираем идентификатор группы и символьный код группы
+
+            'order' => array('GROUP.C_SORT'=>'ASC'), // сортируем в соответствии с сортировкой групп
+
+        ));
+
+        while ($arGroup = $result->fetch())
+
         {
-            $arHund = $arUser;
+
+            print_r($arGroup);
+
         }
 
 
 
-        if($arrDump['key']===$arHund['UF_KEY'])
-        {
-            return self::$info= $arrDump;
-        }
-        else
-        {
-            return 'Error !!';
-        }
+//        if($arrDump['key']===$arHund['UF_KEY'])
+//        {
+//            return self::$info= $arrDump;
+//        }
+//        else
+//        {
+//            return 'Error !!';
+//        }
 
     }
 
