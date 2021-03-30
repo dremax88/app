@@ -4,7 +4,7 @@ require_once ($_SERVER["DOCUMENT_ROOT"].'/app/vendor/autoload.php');
 
 use \classes\initialization;
 use Bitrix\Main\Loader;
-use \Bitrix\Iblock;
+use Bitrix\Iblock;
 
 $a=initialization::getInit();
 $a=$a::parseArr($_REQUEST);
