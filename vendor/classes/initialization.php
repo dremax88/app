@@ -51,7 +51,7 @@ class initialization
 
         while  ($arUroup = $result->fetch()) {
             $arUser=$arUroup;
-        };
+        }
 
         if($arrDump['key']===$arUser['UF_KEY'])
         {
