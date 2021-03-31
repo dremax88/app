@@ -79,7 +79,7 @@ if($typeLink)
         echo $js='['.$arElement['PROPERTIES']['JsonParam']['VALUE'].']';
         echo $arr;
         $arr=json_decode($arr, true);
-        $arStat=json_decode($arElement['PROPERTIES']['JsonParam']['VALUE'], true);
+        $js=json_decode($js, true);
         echo '<pre>';
         print_r($js);
         echo '</pre>';
