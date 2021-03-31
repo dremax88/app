@@ -6,7 +6,6 @@ namespace classes;
 use \Bitrix;
 use \Bitrix\Main;
 use \Bitrix\Main\Loader;
-use \Bitrix\Iblock;
 
 class initialization
 {
