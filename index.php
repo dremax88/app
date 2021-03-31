@@ -2,21 +2,26 @@
 global $USER;
 
 // id пользователя компании
+
 $userID=1112;
 
 // автоподгрузка библиотек
+
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 require_once ($_SERVER["DOCUMENT_ROOT"].'/app/vendor/autoload.php');
 
 // подключение классов
+
 use \classes\initialization;
 use Bitrix;
 use Bitrix\Main\Loader;
 
 //подключение модулей
+
 Loader::includeModule('iblock');
 
 // функция-рефакторинг повторения в исполнительном скрипте
+
 function processGetInfo($userID, $typeLink, $initialization, $status)
     {
 
@@ -59,6 +64,11 @@ switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
         break;
 }
 
+if ($arrParams===false){
+    echo 'Error';
+}
+
+//Проверяем ссылку и применяем статус
 
 $arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];
 $arFilter =
@@ -79,7 +89,7 @@ while($arrEl = $elem->GetNextElement())
 
      }
 
- $arrUserLnk=$initialization::getUserArr($userID,$typeLink);
+$arrUserLnk=$initialization::getUserArr($userID,$typeLink);
 
 $checkLink=array_search($arElement['PROPERTIES']['request_url']['VALUE'], $arrUserLnk['UF_LINK']);
 
@@ -107,8 +117,8 @@ else
 // проверили тип анкеты сгенерировали ссылку, через функцию-рефактор
 // 1) создали массив и загрузили в массив ссылок
 // 2) на выходе создали json ответ подгрузили в соответсвующий элемент инфоблока
-$arrParams=processGetInfo($userID,$typeLink,$initialization, $status);
 
+$arrParams=processGetInfo($userID,$typeLink,$initialization, $status);
 
 //В случае успеха вывели json-ответ
 
