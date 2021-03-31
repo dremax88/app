@@ -40,8 +40,8 @@ $arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];//IBLOC
 $arFilter =
     [
         "IBLOCK_ID"         =>61,
-        "PROPERTY_id_h_reg" =>$arrInfo['key'],
-        "PROPERTY_key"      => $arrInfo['id_h_reg']
+        "PROPERTY_id_h_reg" => $arrInfo['id_h_reg'],
+        "PROPERTY_key"      => $arrInfo['key']
     ];
 
 $elem = CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
