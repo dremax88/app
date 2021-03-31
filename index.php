@@ -33,29 +33,63 @@ function processGetInfo($userID, $typeLink, $initialization, $status)
     }
 
 //запуск патерна одиночки для инициализации соединения и получения данных с проверкой Api-key
-$initialization=initialization::getInit();
-$arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, 'UF_KEY');
+switch ($_REQUEST['type_reg'])
+    {
+
+        case 'negative':
+            $typeLink='UF_LINK';
+            break;
+
+        case 'personal':
+            $typeLink='UF_SOTR_LINK';
+            break;
+
+        case 'advanced':
+            $typeLink='UF_KADRSH';
+            break;
+
+        default:
+            $typeLink=false;
+            break;
+    }
+if($typeLink)
+    {
+        $initialization=initialization::getInit();
+        $arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, $typeLink);
+
+        $arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];
+        $arFilter =
+            [
+                "IBLOCK_ID"         =>61,
+                "=PROPERTY_id_h_reg" => $arrInfo['PROPERTY_VALUES']['id_h_reg'],
+                "=PROPERTY_key"      => $arrInfo['PROPERTY_VALUES']['key']
+            ];
+
+        $elem = CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
+        while($arrEl = $elem->GetNextElement()){
+
+            $arElement['FIELDS'] = $arrEl->GetFields();
+            $arElement['PROPERTIES'] = $arrEl->GetProperties();
+
+        }
+        echo '<pre>';
+        print_r($arElement);
+        echo '</pre>';
+
+        $arrUserLnk=$initialization::getUserArr($userID,$typeLink);
+        echo '<pre>';
+        print_r($arrUserLnk);
+        echo '</pre>';
+    }
+else
+    {
+       echo 'Error';
+    }
 
 
 
-$arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];//IBLOCK_ID и ID обязательно должны быть указаны, см. описание arSelectFields выше
-$arFilter =
-    [
-        "IBLOCK_ID"         =>61,
-        "=PROPERTY_id_h_reg" => $arrInfo['PROPERTY_VALUES']['id_h_reg'],
-        "=PROPERTY_key"      => $arrInfo['PROPERTY_VALUES']['key']
-    ];
 
-$elem = CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
-while($arrEl = $elem->GetNextElement()){
 
-    $arElement['FIELDS'] = $arrEl->GetFields();
-    $arElement['PROPERTIES'] = $arrEl->GetProperties();
-
-}
-echo '<pre>';
-print_r($arElement);
-echo '</pre>';
 
 ////скоплектовали массив и загрузили в инфоблок новый элемент
 //
