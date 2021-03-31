@@ -97,7 +97,7 @@ switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
 
         case 'negative':
             $status='OK';
-            $typeLink='UF_LINK';
+            echo $typeLink='UF_LINK';
             $arrParams=processGetInfo($userID,$typeLink,$initialization, $status);
             break;
 
@@ -109,7 +109,7 @@ switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
 
         case 'advanced':
             $status='OK';
-            $typeLink='UF_KADRSH';
+            echo $typeLink='UF_KADRSH';
             $arrParams=processGetInfo($userID,$typeLink,$initialization,$status);
             break;
 
