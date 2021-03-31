@@ -35,6 +35,7 @@ function processGetInfo($userID, $typeLink, $initialization, $status)
     }
 
 //запуск патерна одиночки для инициализации соединения и получения данных с проверкой Api-key
+echo $_REQUEST['type_reg'];
 switch ($_REQUEST['type_reg'])
     {
 
