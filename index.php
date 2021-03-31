@@ -38,6 +38,21 @@ $arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, 'UF_KEY');
 
 print_r($initialization::checkResult($arrInfo['key'], $arrInfo['id_h_reg']));
 
+$arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];//IBLOCK_ID и ID обязательно должны быть указаны, см. описание arSelectFields выше
+$arFilter =
+    [
+        "IBLOCK_ID"         =>61,
+        "PROPERTY_id_h_reg" =>$arrInfo['key'],
+        "PROPERTY_key"      => $arrInfo['id_h_reg']
+    ];
+$res = CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
+while($ob = $res->GetNextElement()){
+    $arFields = $ob->GetFields();
+    print_r($arFields);
+    $arProps = $ob->GetProperties();
+    print_r($arProps);
+}
+
 //скоплектовали массив и загрузили в инфоблок новый элемент
 
 //if($arrInfo)
