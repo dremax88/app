@@ -90,7 +90,7 @@ class initialization
               'order' => ['SORT' => 'asc'],
               'select' =>['*'],
               'limit' => 100,
-              'filter'=> ['PROPERTY_key'=>$key, 'PROPERTY_id_h_reg'=>$key]
+              'filter'=> ['PROPERTY_1485'=>$key, 'PROPERTY_1468'=>$idHReg]
             ];
         $element=Iblock\ElementTable::getList($params);
         while ($arItem = $element->fetch())
