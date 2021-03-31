@@ -76,12 +76,12 @@ if($typeLink)
 
         $arr=[1,2,3,4,5];
         $arr=json_encode($arr);
-        echo $arElement['PROPERTIES']['JsonParam']['VALUE'];
+        echo $js='['.$arElement['PROPERTIES']['JsonParam']['VALUE'].']';
         echo $arr;
         $arr=json_decode($arr, true);
         $arStat=json_decode($arElement['PROPERTIES']['JsonParam']['VALUE'], true);
         echo '<pre>';
-        print_r($arr);
+        print_r($js);
         echo '</pre>';
 
         $arrUserLnk=$initialization::getUserArr($userID,$typeLink);
