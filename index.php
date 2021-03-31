@@ -36,9 +36,7 @@ function processGetInfo($userID, $typeLink, $initialization, $status)
 $initialization=initialization::getInit();
 $arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, 'UF_KEY');
 
-echo '<pre>';
-print_r($arrInfo);
-echo '<pre>';
+
 
 $arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];//IBLOCK_ID и ID обязательно должны быть указаны, см. описание arSelectFields выше
 $arFilter =
