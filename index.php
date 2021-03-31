@@ -75,10 +75,10 @@ switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
             $arElement['PROPERTIES'] = $arrEl->GetProperties();
 
         }
-
+        print_r($arElement['PROPERTIES']['request_url']['VALUE']);
 
         $arrUserLnk=$initialization::getUserArr($userID,$typeLink);
-
+        print_r($arrUserLnk);
 
 
 
