@@ -87,7 +87,7 @@ class initialization
         Loader::includeModule('iblock');
         $params=
             [
-              'filter'=> ['IBLOCK_ID' => 61],
+              'filter'=> ['IBLOCK_ID' => 61, 'PROPERTY_1485' => $key],
               'select' =>['*'],
 
             ];
