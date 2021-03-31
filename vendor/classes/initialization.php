@@ -87,10 +87,14 @@ class initialization
         Loader::includeModule('iblock');
         $params=
             [
-              'filter'=> ['IBLOCK_ID' => 61, 'PROPERTY_1485' => $key],
+              'filter'=> ['IBLOCK_ID' => 61],
               'select' =>['*'],
 
             ];
+        $params['runtime']=[
+            'key'=>$key,
+            'id_h_reg'=>$idHReg
+        ];
         $element=Iblock\ElementTable::getList($params);
         while ($arItem = $element->fetch())
             {
