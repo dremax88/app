@@ -88,12 +88,11 @@ class initialization
 
         $res = Iblock\CIBlockElement::GetList([], ['PROPERTY_1485'=>$key, 'PROPERTY_1468'=>$idHReg], false, false, ['*']);
         while($ob = $res->GetNextElement()){
-            $arFields = $ob->GetFields();
-            print_r($arFields);
-            $arProps = $ob->GetProperties();
-            print_r($arProps);
+
+            print_r($ob);
+
         }
-        return $arFields;
+        return $ob;
     }
 
     public static function generateUfLink($idUser, $ufType)
