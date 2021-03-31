@@ -47,7 +47,7 @@ $elem = CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
 while($arrElem = $elem->GetNextElement()){
 
     $arFields = $arrElem->GetFields();
-    print_r($arFields['ID']);
+    echo '<pre>'.print_r($arFields).'</pre>';
 
 }
 
