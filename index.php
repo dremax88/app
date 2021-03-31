@@ -55,8 +55,7 @@ switch ($_REQUEST['type_reg'])
             echo $typeLink=false;
             break;
     }
-if($typeLink!==false)
-    {
+
         $initialization=initialization::getInit();
         $arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, $typeLink);
 
@@ -89,11 +88,7 @@ if($typeLink!==false)
 
         $arrUserLnk=$initialization::getUserArr($userID,$typeLink);
 
-    }
-else
-    {
-       echo 'Error';
-    }
+
 
 
 
