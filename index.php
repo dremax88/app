@@ -42,12 +42,11 @@ $arFilter =
         "PROPERTY_id_h_reg" =>$arrInfo['key'],
         "PROPERTY_key"      => $arrInfo['id_h_reg']
     ];
-$res = CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
-while($ob = $res->GetNextElement()){
-    $arFields = $ob->GetFields();
-    print_r($arFields);
-    $arProps = $ob->GetProperties();
-    print_r($arProps);
+
+$elem = CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
+while($arrElem = $elem->GetNextElement()){
+    print_r($arrElem['ID']);
+
 }
 
 //скоплектовали массив и загрузили в инфоблок новый элемент
