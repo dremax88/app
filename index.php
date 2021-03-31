@@ -69,8 +69,7 @@ $arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];
 //        echo '</pre>';
 
         $arrUserLnk=$initialization::getUserArr($userID,$typeLink);
-print_r($arrInfo);
-print_r($arrUserLnk);
+
 
 
 
