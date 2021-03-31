@@ -36,7 +36,7 @@ class initialization
         return self::$init;
     }
 
-    protected static function getUserArr($idUser, $ufType)
+    public static function getUserArr($idUser, $ufType)
     {
         $arFilter=['ID'=>$idUser];
         $arSelect=['ID',$ufType];
@@ -83,25 +83,7 @@ class initialization
 
     }
 
-    public static function checkResult($key, $idHReg){
-        Loader::includeModule('iblock');
-        $params=
-            [
-              'filter'=> ['IBLOCK_ID' => 61],
-              'select' =>['*'],
 
-            ];
-        $params['runtime']=[
-            'key'=>$key,
-            'id_h_reg'=>$idHReg
-        ];
-        $element=Iblock\ElementTable::getList($params);
-        while ($arItem = $element->fetch())
-            {
-                $arRes=$arItem;
-            }
-        return $arRes;
-    }
 
     public static function generateUfLink($idUser, $ufType)
     {
