@@ -36,7 +36,7 @@ class initialization
         return self::$init;
     }
 
-    protected static function getUserArr($idUser, $ufType)
+    public static function getUserArr($idUser, $ufType)
     {
         $arFilter=['ID'=>$idUser];
         $arSelect=['ID',$ufType];
