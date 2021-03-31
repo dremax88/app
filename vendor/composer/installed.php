@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '7b28f79c9c9ed443a97320082b4afd1cec97755e',
+    'reference' => '53dcbfa948669742db9096f3be39ce27acf7e4c2',
     'name' => 'vendor_name/app',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '7b28f79c9c9ed443a97320082b4afd1cec97755e',
+      'reference' => '53dcbfa948669742db9096f3be39ce27acf7e4c2',
     ),
   ),
 );
