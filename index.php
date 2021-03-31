@@ -72,8 +72,9 @@ if($typeLink)
             $arElement['PROPERTIES'] = $arrEl->GetProperties();
 
         }
+        $arStat=json_decode(json_encode($arElement['PROPERTIES']['JsonParam']['VALUE']), true);
         echo '<pre>';
-        print_r($arElement['PROPERTIES']['JsonParam']['VALUE']);
+        print_r($arStat);
         echo '</pre>';
 
         $arrUserLnk=$initialization::getUserArr($userID,$typeLink);
