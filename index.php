@@ -60,30 +60,37 @@ switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
 }
 
 
-    $arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];
-    $arFilter =
-            [
-                "IBLOCK_ID"         =>61,
-                "=PROPERTY_id_h_reg" => $arrInfo['PROPERTY_VALUES']['id_h_reg'],
-                "=PROPERTY_key"      => $arrInfo['PROPERTY_VALUES']['key']
-            ];
+$arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];
+$arFilter =
+     [
 
-        $elem = CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
-        while($arrEl = $elem->GetNextElement()){
+         "IBLOCK_ID"         =>61,
+         "=PROPERTY_id_h_reg" => $arrInfo['PROPERTY_VALUES']['id_h_reg'],
+         "=PROPERTY_key"      => $arrInfo['PROPERTY_VALUES']['key']
 
-            $arElement['FIELDS'] = $arrEl->GetFields();
-            $arElement['PROPERTIES'] = $arrEl->GetProperties();
+     ];
 
-        }
-        print_r($arElement['PROPERTIES']['request_url']['VALUE']);
+$elem = CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
+while($arrEl = $elem->GetNextElement())
+    {
 
-        $arrUserLnk=$initialization::getUserArr($userID,$typeLink);
-        print_r($arrUserLnk);
+         $arElement['FIELDS'] = $arrEl->GetFields();
+         $arElement['PROPERTIES'] = $arrEl->GetProperties();
 
+     }
 
+ $arrUserLnk=$initialization::getUserArr($userID,$typeLink);
 
+$checkLink=array_search($arElement['PROPERTIES']['request_url']['VALUE'], $arrUserLnk['UF_LINK']);
 
-
+if( $checkLink!==false)
+    {
+        $status='REQ';
+    }
+else
+    {
+        $status='OK';
+    }
 
 //скоплектовали массив и загрузили в инфоблок новый элемент
 
@@ -100,33 +107,8 @@ else
 // проверили тип анкеты сгенерировали ссылку, через функцию-рефактор
 // 1) создали массив и загрузили в массив ссылок
 // 2) на выходе создали json ответ подгрузили в соответсвующий элемент инфоблока
+$arrParams=processGetInfo($userID,$typeLink,$initialization, $status);
 
-switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
-    {
-
-        case 'negative':
-            $status='OK';
-            $typeLink='UF_LINK';
-            $arrParams=processGetInfo($userID,$typeLink,$initialization, $status);
-            break;
-
-        case 'personal':
-            $status='OK';
-            echo $typeLink='UF_SOTR_LINK';
-            $arrParams=processGetInfo($userID,$typeLink,$initialization,$status);
-            break;
-
-        case 'advanced':
-            $status='OK';
-            $typeLink='UF_KADRSH';
-            $arrParams=processGetInfo($userID,$typeLink,$initialization,$status);
-            break;
-
-        default:
-            $arrParams=false;
-            break;
-
-    }
 
 //В случае успеха вывели json-ответ
 
