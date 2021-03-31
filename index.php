@@ -24,7 +24,7 @@ function processGetInfo($userID, $typeLink, $initialization, $status)
         $fields = [$typeLink => $arrLink[$typeLink]];
         $user = new CUser;
         $user->Update($userID, $fields);
-        $arrParams['arrForJson']=$arrForJson=[
+        $arrParams['arrForJson']=[
             'status'        => $status,
             'request_url'   =>$arrLink['link']
         ];
