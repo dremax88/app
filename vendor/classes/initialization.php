@@ -87,10 +87,9 @@ class initialization
         Loader::includeModule('iblock');
         $params=
             [
-              'order' => ['SORT' => 'asc'],
+              'filter'=> ['PROPERTY_1485'=>$key, 'PROPERTY_1468'=>$idHReg],
               'select' =>['*'],
-              'limit' => 100,
-              'filter'=> ['PROPERTY_1485'=>$key, 'PROPERTY_1468'=>$idHReg]
+
             ];
         $element=Iblock\ElementTable::getList($params);
         while ($arItem = $element->fetch())
