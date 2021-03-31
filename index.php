@@ -72,10 +72,12 @@ if($typeLink)
             $arElement['PROPERTIES'] = $arrEl->GetProperties();
 
         }
-        echo $arElement['PROPERTIES']['JsonParam']['VALUE'];
+
 
         $arr=[1,2,3,4,5];
         $arr=json_encode($arr);
+        echo $arElement['PROPERTIES']['JsonParam']['VALUE'];
+        echo $arr;
         $arr=json_decode($arr, true);
         $arStat=json_decode($arElement['PROPERTIES']['JsonParam']['VALUE'], true);
         echo '<pre>';
