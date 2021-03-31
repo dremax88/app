@@ -36,30 +36,12 @@ function processGetInfo($userID, $typeLink, $initialization, $status)
 
 //запуск патерна одиночки для инициализации соединения и получения данных с проверкой Api-key
 
-switch ($_REQUEST['type_reg'])
-    {
 
-        case 'negative':
-            echo $typeLink='UF_LINK';
-            break;
 
-        case 'personal':
-            echo $typeLink='UF_SOTR_LINK';
-            break;
+$initialization=initialization::getInit();
+$arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, 'UF_KEY');
 
-        case 'advanced':
-            echo $typeLink='UF_KADRSH';
-            break;
-
-        default:
-            echo $typeLink=false;
-            break;
-    }
-
-        $initialization=initialization::getInit();
-        $arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, 'UF_KEY');
-
-        $arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];
+$arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];
         $arFilter =
             [
                 "IBLOCK_ID"         =>61,
@@ -146,7 +128,7 @@ if($arrParams!==false)
     CIBlockElement::SetPropertyValueCode($idUnit, "JsonParam", $arrForJson);
     CIBlockElement::SetPropertyValueCode($idUnit, "request_url", $arrParams['link']);
     CIBlockElement::SetPropertyValueCode($idUnit, "status", $arrParams['status']);
-    echo $arrParams['arrForJson'];
+    echo $arrForJson;
 }
 else
 {
