@@ -47,12 +47,15 @@ $arFilter =
     ];
 
 $elem = CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
-while($arrElem = $elem->GetNextElement()){
+while($arrEl = $elem->GetNextElement()){
 
-    $arFields['FIELDS'] = $arrElem->GetFields();
-    $arFields['PROPERTIES'] = $arrElem->GetProperties();
+    $arElement['FIELDS'] = $arrEl->GetFields();
+    $arElement['PROPERTIES'] = $arrEl->GetProperties();
 
 }
+echo '<pre>';
+print_r($arElement);
+echo '</pre>';
 
 //скоплектовали массив и загрузили в инфоблок новый элемент
 
