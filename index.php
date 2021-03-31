@@ -78,9 +78,7 @@ if($typeLink)
         echo '</pre>';
 
         $arrUserLnk=$initialization::getUserArr($userID,$typeLink);
-        echo '<pre>';
-        print_r($arrUserLnk);
-        echo '</pre>';
+
     }
 else
     {
