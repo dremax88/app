@@ -86,7 +86,7 @@ class initialization
     public static function checkResult($key, $idHReg){
         Loader::includeModule('iblock');
 
-        $res = Bitrix\CIBlockElement::GetList([], ['PROPERTY_1485'=>$key, 'PROPERTY_1468'=>$idHReg], false, false, ['*']);
+        $res = \CIBlockElement::GetList([], ['PROPERTY_1485'=>$key, 'PROPERTY_1468'=>$idHReg], false, false, ['*']);
         while($ob = $res->GetNextElement()){
 
             print_r($ob);
