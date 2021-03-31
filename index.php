@@ -36,9 +36,7 @@ function processGetInfo($userID, $typeLink, $initialization, $status)
 $initialization=initialization::getInit();
 $arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, 'UF_KEY');
 
-echo '<pre>';
-print_r($arrInfo);
-echo '<pre>';
+
 
 $arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];//IBLOCK_ID и ID обязательно должны быть указаны, см. описание arSelectFields выше
 $arFilter =
@@ -51,8 +49,8 @@ $arFilter =
 $elem = CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
 while($arrElem = $elem->GetNextElement()){
 
-    $arFields = $arrElem->GetFields();
-    echo '<pre>'.print_r($arFields).'</pre>';
+    $arFields['FIELDS'] = $arrElem->GetFields();
+    $arFields['PROPERTIES'] = $arrElem->GetProperties();
 
 }
 
@@ -72,7 +70,7 @@ while($arrElem = $elem->GetNextElement()){
 // 1) создали массив и загрузили в массив ссылок
 // 2) на выходе создали json ответ подгрузили в соответсвующий элемент инфоблока
 
-//switch ($_REQUEST['type_reg'])
+//switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
 //    {
 //
 //        case 'negative':
