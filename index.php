@@ -36,13 +36,32 @@ function processGetInfo($userID, $typeLink, $initialization, $status)
 
 //запуск патерна одиночки для инициализации соединения и получения данных с проверкой Api-key
 
-
-
 $initialization=initialization::getInit();
 $arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, 'UF_KEY');
 
-$arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];
-        $arFilter =
+switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
+{
+
+    case 'negative':
+        $typeLink='UF_LINK';
+        break;
+
+    case 'personal':
+        echo $typeLink='UF_SOTR_LINK';
+        break;
+
+    case 'advanced':
+        $typeLink='UF_KADRSH';
+        break;
+
+    default:
+        $arrParams=false;
+        break;
+}
+
+
+    $arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];
+    $arFilter =
             [
                 "IBLOCK_ID"         =>61,
                 "=PROPERTY_id_h_reg" => $arrInfo['PROPERTY_VALUES']['id_h_reg'],
@@ -58,17 +77,7 @@ $arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];
         }
 
 
-//        $arr=['a'=>1,2,3,4,5];
-//        $arr=json_encode($arr);
-//        echo $js=$arElement['PROPERTIES']['JsonParam']['VALUE'];
-//        echo $arr;
-//        $arr=json_decode($arr, true);
-//        $js=json_decode($js, true);
-//        echo '<pre>';
-//        print_r($arr);
-//        echo '</pre>';
-
-
+        $arrUserLnk=$initialization::getUserArr($userID,$typeLink);
 
 
 
@@ -92,12 +101,12 @@ else
 // 1) создали массив и загрузили в массив ссылок
 // 2) на выходе создали json ответ подгрузили в соответсвующий элемент инфоблока
 
-switch ($_REQUEST['type_reg'])
+switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
     {
 
         case 'negative':
             $status='OK';
-            echo $typeLink='UF_LINK';
+            $typeLink='UF_LINK';
             $arrParams=processGetInfo($userID,$typeLink,$initialization, $status);
             break;
 
@@ -109,7 +118,7 @@ switch ($_REQUEST['type_reg'])
 
         case 'advanced':
             $status='OK';
-            echo $typeLink='UF_KADRSH';
+            $typeLink='UF_KADRSH';
             $arrParams=processGetInfo($userID,$typeLink,$initialization,$status);
             break;
 
@@ -123,12 +132,11 @@ switch ($_REQUEST['type_reg'])
 
 if($arrParams!==false)
 {
-    print_r($arrParams);
-//    $arrForJson=json_encode($arrParams['arrForJson']);
-//    CIBlockElement::SetPropertyValueCode($idUnit, "JsonParam", $arrForJson);
-//    CIBlockElement::SetPropertyValueCode($idUnit, "request_url", $arrParams['link']);
-//    CIBlockElement::SetPropertyValueCode($idUnit, "status", $arrParams['status']);
-//    echo $arrForJson;
+    $arrForJson=json_encode($arrParams['arrForJson']);
+    CIBlockElement::SetPropertyValueCode($idUnit, "JsonParam", $arrForJson);
+    CIBlockElement::SetPropertyValueCode($idUnit, "request_url", $arrParams['link']);
+    CIBlockElement::SetPropertyValueCode($idUnit, "status", $arrParams['status']);
+    echo $arrForJson;
 }
 else
 {
