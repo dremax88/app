@@ -92,7 +92,7 @@ else
 // 1) создали массив и загрузили в массив ссылок
 // 2) на выходе создали json ответ подгрузили в соответсвующий элемент инфоблока
 
-switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
+switch ($_REQUEST['type_reg'])
     {
 
         case 'negative':
