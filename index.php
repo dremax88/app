@@ -72,6 +72,7 @@ if($typeLink)
             $arElement['PROPERTIES'] = $arrEl->GetProperties();
 
         }
+        echo $arElement['PROPERTIES']['JsonParam']['VALUE'];
         $arStat=json_decode($arElement['PROPERTIES']['JsonParam']['VALUE'], true);
         echo '<pre>';
         print_r($arStat);
