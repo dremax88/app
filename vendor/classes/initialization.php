@@ -60,6 +60,8 @@ class initialization
     {
 
         $arUser=self::getUserArr($idUser,$ufType);
+        echo $arrDump['key'];
+        echo $arUser[$ufType];
         if($arrDump['key']===$arUser[$ufType])
             {
                 $PROP = $arrDump;
