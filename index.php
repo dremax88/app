@@ -123,11 +123,12 @@ switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
 
 if($arrParams!==false)
 {
-    $arrForJson=json_encode($arrParams['arrForJson']);
-    CIBlockElement::SetPropertyValueCode($idUnit, "JsonParam", $arrForJson);
-    CIBlockElement::SetPropertyValueCode($idUnit, "request_url", $arrParams['link']);
-    CIBlockElement::SetPropertyValueCode($idUnit, "status", $arrParams['status']);
-    echo $arrForJson;
+    print_r($arrParams);
+//    $arrForJson=json_encode($arrParams['arrForJson']);
+//    CIBlockElement::SetPropertyValueCode($idUnit, "JsonParam", $arrForJson);
+//    CIBlockElement::SetPropertyValueCode($idUnit, "request_url", $arrParams['link']);
+//    CIBlockElement::SetPropertyValueCode($idUnit, "status", $arrParams['status']);
+//    echo $arrForJson;
 }
 else
 {
