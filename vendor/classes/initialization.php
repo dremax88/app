@@ -83,6 +83,24 @@ class initialization
 
     }
 
+    public static function checkResult($key, $idHReg){
+        Loader::includeModule('iblock');
+        $params=
+            [
+              'order' => ['SORT' => 'asc'],
+              'select' =>['*'],
+              'limit' => 100,
+              'filter'=> ['PROPERTY_key'=>$key, 'PROPERTY_id_h_reg'=>$key]
+            ];
+        $element=Iblock\ElementTable::getList($params);
+        while ($arItem = $element->fetch())
+            {
+                $arRes['Fields']=$arItem->GetFields();
+                $arRes['Properties']=$arItem->GetProperties();
+            }
+        return $arRes;
+    }
+
     public static function generateUfLink($idUser, $ufType)
     {
         $arUser=self::getUserArr($idUser,$ufType);

@@ -17,7 +17,7 @@ use Bitrix\Main\Loader;
 Loader::includeModule('iblock');
 
 // функция-рефакторинг повторения в исполнительном скрипте
-function processGetInfo($userID, $typeLink, $initialization)
+function processGetInfo($userID, $typeLink, $initialization, $status)
     {
 
         $arrLink=$initialization::generateUfLink($userID, $typeLink);
@@ -25,8 +25,8 @@ function processGetInfo($userID, $typeLink, $initialization)
         $user = new CUser;
         $user->Update($userID, $fields);
         $arrForJson=[
-            'status'=>'OK',
-            'request_url'=>$arrLink['link']
+            'status'        => $status,
+            'request_url'   =>$arrLink['link']
         ];
         return $arrForJson;
 
@@ -36,52 +36,60 @@ function processGetInfo($userID, $typeLink, $initialization)
 $initialization=initialization::getInit();
 $arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, 'UF_KEY');
 
+print_r($initialization::checkResult($arrInfo['key'], $arrInfo['id_h_reg']));
+
 //скоплектовали массив и загрузили в инфоблок новый элемент
-if($arrInfo)
-{
-    $el=new CIBlockElement;
-    $idUnit=$el->add($arrInfo);
-}
-else
-{
-    echo 'Error';
-}
+
+//if($arrInfo)
+//{
+//    $el=new CIBlockElement;
+//    $idUnit=$el->add($arrInfo);
+//}
+//else
+//{
+//    echo 'Error';
+//}
 
 // проверили тип анкеты сгенерировали ссылку, через функцию-рефактор
 // 1) создали массив и загрузили в массив ссылок
 // 2) на выходе создали json ответ подгрузили в соответсвующий элемент инфоблока
-switch ($_REQUEST['type_reg'])
-    {
 
-        case 'negative':
-            $typeLink='UF_LINK';
-            $arrForJson=processGetInfo($userID,$typeLink,$initialization);
-            break;
-
-        case 'personal':
-            echo $typeLink='UF_SOTR_LINK';
-            $arrForJson=processGetInfo($userID,$typeLink,$initialization);
-            break;
-
-        case 'advanced':
-            $typeLink='UF_KADRSH';
-            $arrForJson=processGetInfo($userID,$typeLink,$initialization);
-            break;
-
-        default:
-            $arrForJson=false;
-            break;
-
-    }
+//switch ($_REQUEST['type_reg'])
+//    {
+//
+//        case 'negative':
+//            $status='OK';
+//            $typeLink='UF_LINK';
+//            $arrForJson=processGetInfo($userID,$typeLink,$initialization, $status);
+//            break;
+//
+//        case 'personal':
+//            $status='OK';
+//            echo $typeLink='UF_SOTR_LINK';
+//            $arrForJson=processGetInfo($userID,$typeLink,$initialization,$status);
+//            break;
+//
+//        case 'advanced':
+//            $status='OK';
+//            $typeLink='UF_KADRSH';
+//            $arrForJson=processGetInfo($userID,$typeLink,$initialization,$status);
+//            break;
+//
+//        default:
+//            $arrForJson=false;
+//            break;
+//
+//    }
 
 //В случае успеха вывели json-ответ
-if($arrForJson!==false)
-{
-    $arrForJson=json_encode($arrForJson);
-    CIBlockElement::SetPropertyValueCode($idUnit, "JsonParam", $arrForJson);
-    echo $arrForJson;
-}
-else
-{
-    echo 'Error';
-}
+
+//if($arrForJson!==false)
+//{
+//    $arrForJson=json_encode($arrForJson);
+//    CIBlockElement::SetPropertyValueCode($idUnit, "JsonParam", $arrForJson);
+//    echo $arrForJson;
+//}
+//else
+//{
+//    echo 'Error';
+//}
