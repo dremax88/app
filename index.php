@@ -39,7 +39,6 @@ $arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, 'UF_KEY');
 $arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];//IBLOCK_ID и ID обязательно должны быть указаны, см. описание arSelectFields выше
 $arFilter =
     [
-        "IBLOCK_ID"         =>61,
         "PROPERTY_id_h_reg" =>$arrInfo['key'],
         "PROPERTY_key"      => $arrInfo['id_h_reg']
     ];
