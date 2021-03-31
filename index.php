@@ -57,7 +57,7 @@ switch ($_REQUEST['type_reg'])
     }
 
         $initialization=initialization::getInit();
-        $arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, $typeLink);
+        $arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, 'UF_KEY');
 
         $arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];
         $arFilter =
