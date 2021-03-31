@@ -30,7 +30,7 @@ function processGetInfo($userID, $typeLink, $initialization, $status)
         ];
         $arrParams['link']=$arrLink['link'];
         $arrParams['status']=$status;
-        return $arrForJson;
+        return $arrParams;
 
     }
 
