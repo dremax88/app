@@ -39,19 +39,19 @@ switch ($_REQUEST['type_reg'])
     {
 
         case 'negative':
-            $typeLink='UF_LINK';
+            echo $typeLink='UF_LINK';
             break;
 
         case 'personal':
-            $typeLink='UF_SOTR_LINK';
+            echo $typeLink='UF_SOTR_LINK';
             break;
 
         case 'advanced':
-            $typeLink='UF_KADRSH';
+            echo $typeLink='UF_KADRSH';
             break;
 
         default:
-            $typeLink=false;
+            echo $typeLink=false;
             break;
     }
 if($typeLink)
