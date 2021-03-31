@@ -85,14 +85,18 @@ class initialization
 
     public static function checkResult($key, $idHReg){
         Loader::includeModule('iblock');
+        $params=
+            [
+              'filter'=> ['IBLOCK_ID' => 61],
+              'select' =>['*'],
 
-        $res = \CIBlockElement::GetList([], ['PROPERTY_1485'=>$key, 'PROPERTY_1468'=>$idHReg], false, false, ['*']);
-        while($ob = $res->GetNextElement()){
-
-            print_r($ob);
-
-        }
-        return $ob;
+            ];
+        $element=Iblock\ElementTable::getList($params);
+        while ($arItem = $element->fetch())
+            {
+                $arRes=$arItem;
+            }
+        return $arRes;
     }
 
     public static function generateUfLink($idUser, $ufType)
