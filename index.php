@@ -87,7 +87,7 @@ switch ($_REQUEST['type_reg'])
 //        echo '</pre>';
 
         $arrUserLnk=$initialization::getUserArr($userID,$typeLink);
-
+print_r($arrInfo);
 
 
 
