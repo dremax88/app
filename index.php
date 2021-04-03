@@ -29,15 +29,17 @@ function processGetInfo($userID, $typeLink, $initialization, $status)
         $fields = [$typeLink => $arrLink[$typeLink]];
         $user = new CUser;
         $user->Update($userID, $fields);
-        $arrParams['arrForJson']=[
-            'status'        => $status,
-            'request_url'   =>$arrLink['link']
-        ];
+        $arrParams['arrForJson']=
+            [
+                'status'        => $status,
+                'request_url'   =>$arrLink['link']
+            ];
         $arrParams['link']=$arrLink['link'];
         $arrParams['status']=$status;
         return $arrParams;
 
     }
+
 
 //запуск патерна одиночки для инициализации соединения и получения данных с проверкой Api-key
 
