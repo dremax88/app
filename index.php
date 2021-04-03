@@ -93,7 +93,7 @@ $arrUserLnk=$initialization::getUserArr($userID,$typeLink);
 
 $checkLink=array_search($arElement['PROPERTIES']['request_url']['VALUE'], $arrUserLnk['UF_LINK']);
 
-if( $checkLink!==false)
+if( $checkLink!==false )
     {
         $status='REQ';
     }
