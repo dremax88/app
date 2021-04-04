@@ -16,7 +16,6 @@ class generateLink
 
     public function getGenerateUfLink()
     {
-
         $arUser=new userArr($this->idUser, $this->ufType);
         $arUser=$arUser->getUserArr();
         $hech = uniqid();
