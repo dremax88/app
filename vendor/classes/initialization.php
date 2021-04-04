@@ -37,14 +37,14 @@ class initialization
     public static function UserArr($idUser, $ufType)
     {
         $userArr=new userArr($idUser, $ufType);
-        $userArr->getUserArr();
+        $userArr=$userArr->getUserArr();
         return $userArr;
     }
 
     public static function parseArr($id, $arrDump, $idUser, $ufType)
     {
         $arInfo=new processArr($id, $arrDump, $idUser, $ufType);
-        $arInfo->parseArr();
+        $arInfo=$arInfo->parseArr();
         return $arInfo;
 
     }
