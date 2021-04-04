@@ -34,24 +34,11 @@ class initialization
         return self::$init;
     }
 
-    public static function getUserArr($idUser, $ufType)
+    public static function UserArr($idUser, $ufType)
     {
-        $arFilter=['ID'=>$idUser];
-        $arSelect=['ID',$ufType];
-        $result = Main\UserTable::getList
-        (
-            [
-
-            'filter' => $arFilter,
-            'select' => $arSelect, // выбираем идентификатор группы и символьный код группы
-
-            ]
-        );
-
-        while  ($arUgroup = $result->fetch()) {
-            $arUser=$arUgroup;
-        }
-        return $arUser;
+        $userArr=new userArr($idUser, $ufType);
+        $userArr->getUserArr();
+        return $userArr;
     }
 
     public static function parseArr($id, $arrDump, $idUser, $ufType)
