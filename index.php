@@ -93,7 +93,7 @@ while($arrEl = $elem->GetNextElement())
 
      }
 
-$arrUserLnk=$initialization::getUserArr($userID,$typeLink);
+$arrUserLnk=$initialization::UserArr($userID,$typeLink);
 
 $checkLink=array_search($arElement['PROPERTIES']['request_url']['VALUE'], $arrUserLnk['UF_LINK']);
 

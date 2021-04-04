@@ -49,7 +49,7 @@ class initialization
 
     public static function generateUfLink($idUser, $ufType)
     {
-        $arUser=self::getUserArr($idUser,$ufType);
+        $arUser=self::UserArr($idUser,$ufType);
         $hech = uniqid();
         switch ($ufType)
         {
