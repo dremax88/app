@@ -55,7 +55,7 @@ class processArr
 
                 ];
             $elId=Iblock\ElementTable::add($arInfo);
-            echo $elId;
+            var_dump($elId);
         }
         else
         {
