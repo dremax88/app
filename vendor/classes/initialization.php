@@ -3,10 +3,6 @@
 
 namespace classes;
 
-use \Bitrix;
-use \Bitrix\Main;
-use \Bitrix\Main\Loader;
-
 class initialization
 {
     private static $init;
