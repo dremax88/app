@@ -5,7 +5,7 @@ namespace classes;
 use \Bitrix;
 use \Bitrix\Main;
 use \Bitrix\Main\Loader;
-use \Bitrix\Iblock\Copy\Implement;
+use \Bitrix\Iblock;
 
 class processArr
 {
@@ -54,7 +54,7 @@ class processArr
                     "ACTIVE"         => "Y",
 
                 ];
-            $elId=Implement\Element::add('',$arInfo);
+            $elId=Iblock\ElementTable::add($arInfo);
             echo $elId;
         }
         else
