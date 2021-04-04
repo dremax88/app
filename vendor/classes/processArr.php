@@ -5,7 +5,7 @@ namespace classes;
 use \Bitrix;
 use \Bitrix\Main;
 use \Bitrix\Main\Loader;
-use \Bitrix\Iblock;
+//use \Bitrix\Iblock;
 
 class processArr
 {
@@ -21,7 +21,7 @@ class processArr
 
     public function parseArr()
     {
-        Loader::includeModule('iblock');
+//        Loader::includeModule('iblock');
         $arUser=new userArr($this->idUser, $this->ufType);
         $arUser=$arUser->getUserArr();
         if($this->arrDump['key']===$arUser[$this->ufType])
@@ -54,9 +54,9 @@ class processArr
                     "ACTIVE"         => "Y",
 
                 ];
-            $elementObject = new \CIBlockElement;
-            $elId=$elementObject->add($arInfo);
-            var_dump($elId);
+//            $elementObject = new \CIBlockElement;
+//            $elId=$elementObject->add($arInfo);
+//            var_dump($elId);
         }
         else
         {
