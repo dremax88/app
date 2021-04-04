@@ -10,7 +10,6 @@ use \Bitrix\Main\Loader;
 class initialization
 {
     private static $init;
-    protected static $info;
 
     private function __construct()
     {
@@ -97,8 +96,6 @@ class initialization
         return $arInfo;
 
     }
-
-
 
     public static function generateUfLink($idUser, $ufType)
     {
