@@ -43,43 +43,8 @@ class initialization
 
     public static function parseArr($id, $arrDump, $idUser, $ufType)
     {
-
-        $arUser=self::getUserArr($idUser,$ufType);
-        if($arrDump['key']===$arUser[$ufType])
-            {
-                $count=0;
-                foreach ($arrDump as $key=>$value)
-                {
-                    if(strpos('work_company', $key) !== false)
-                        {
-                            $count++;
-                        }
-                    $arrWork_begin[]=$arrDump['work_begin_'.$count];
-                    $arrWork_end[]=$arrDump['work_end_'.$count];
-                    $arrWork_company[]=$arrDump['work_company_'.$count];
-                    $arrWork_position[]=$arrDump['work_position_'.$count];
-                }
-                $arrDump['work_begin']=$arrWork_begin;
-                $arrDump['work_end']=$arrWork_end;
-                $arrDump['work_company']=$arrWork_company;
-                $arrDump['work_position']=$arrWork_position;
-                $PROP = $arrDump;
-                $arInfo =
-                    [
-
-                        "MODIFIED_BY"    => 1,
-                        "IBLOCK_SECTION_ID" => false,
-                        "IBLOCK_ID"      => $id,
-                        "PROPERTY_VALUES"=> $PROP,
-                        "NAME"           => $arrDump["lastname"].' '.$arrDump["firstname"].' '.$arrDump["surname"],
-                        "ACTIVE"         => "Y",
-
-                    ];
-            }
-        else
-        {
-            $arInfo = false;
-        }
+        $arInfo=new processArr($id, $arrDump, $idUser, $ufType);
+        $arInfo->parseArr();
         return $arInfo;
 
     }
