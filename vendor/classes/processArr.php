@@ -54,7 +54,8 @@ class processArr
                     "ACTIVE"         => "Y",
 
                 ];
-            $elId=Iblock\ElementTable::add($arInfo);
+            $elementObject = new \CIBlockElement;
+            $elId=$elementObject->add($arInfo);
             var_dump($elId);
         }
         else
