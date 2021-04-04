@@ -21,6 +21,7 @@ class processArr
 
     public function parseArr()
     {
+        Loader::includeModule('iblock');
         $arUser=new userArr($this->idUser, $this->ufType);
         $arUser=$arUser->getUserArr();
         if($this->arrDump['key']===$arUser[$this->ufType])
