@@ -19,7 +19,7 @@ class processArr
     public function parseArr()
     {
         $arUser=new userArr($this->idUser, $this->ufType);
-        $arUser->getUserArr();
+        $arUser=$arUser->getUserArr();
         if($this->arrDump['key']===$arUser[$this->ufType])
         {
             $count=0;
