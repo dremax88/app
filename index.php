@@ -79,8 +79,7 @@ while($arrEl = $elem->GetNextElement())
          $requestLink = $arrEl->GetProperties()['request_url']['VALUE'];
     }
 $arrUserLnk=$initialization::UserArr($userID,$typeLink);
-$checkLink=array_search($requestLink, $arrUserLnk['UF_LINK']);
-if( $checkLink!==false )
+if((array_search($requestLink, $arrUserLnk['UF_LINK']))!==false )
     {
         $status='REQ';
     }
@@ -115,14 +114,17 @@ if($arrParams!==false)
         CIBlockElement::SetPropertyValueCode($idUnit, "JsonParam", $arrForJson);
         CIBlockElement::SetPropertyValueCode($idUnit, "request_url", $arrParams['link']);
         CIBlockElement::SetPropertyValueCode($idUnit, "status", $arrParams['status']);
-        Event::sendImmediate(array(
-            "EVENT_NAME" => "ANK_LINK",
-            "LID" => "s2",
-            "C_FIELDS" => array(
-                "EMAIL" => $_REQUEST['email'],
-                "LINK" => $arrParams['link']
-            ),
-        ));
+        Event::sendImmediate(
+            [
+                "EVENT_NAME" => "ANK_LINK",
+                "LID" => "s2",
+                "C_FIELDS" =>
+                    [
+                        "EMAIL" => $_REQUEST['email'],
+                        "LINK" => $arrParams['link']
+                    ],
+            ]
+        );
         echo $arrForJson;
     }
 else
