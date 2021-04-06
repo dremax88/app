@@ -45,7 +45,6 @@ function processGetInfo($userID, $typeLink, $initialization, $status)
 
 $initialization=initialization::getInit();
 $arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, 'UF_KEY');
-
 switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
     {
 
@@ -70,23 +69,17 @@ switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
 
 $arFilter =
      [
-
          "IBLOCK_ID"         =>61,
          "=PROPERTY_id_h_reg" => $arrInfo['PROPERTY_VALUES']['id_h_reg'],
          "=PROPERTY_key"      => $arrInfo['PROPERTY_VALUES']['key']
-
      ];
-
 $elem = CIBlockElement::GetList([], $arFilter);
 while($arrEl = $elem->GetNextElement())
     {
          $requestLink = $arrEl->GetProperties()['request_url']['VALUE'];
-     }
-
+    }
 $arrUserLnk=$initialization::UserArr($userID,$typeLink);
-
 $checkLink=array_search($requestLink, $arrUserLnk['UF_LINK']);
-
 if( $checkLink!==false )
     {
         $status='REQ';
