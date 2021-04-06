@@ -31,12 +31,11 @@ class processArr
             {
                 if(strpos($key,'work_company') !== false)
                 {
+                    $count++;
                     $arrWork_begin[]=$this->arrDump['work_begin_'.$count];
                     $arrWork_end[]=$this->arrDump['work_end_'.$count];
                     $arrWork_company[]=$this->arrDump['work_company_'.$count];
                     $arrWork_position[]=$this->arrDump['work_position_'.$count];
-                    $count++;
-                    echo $count;
                 }
 
             }
