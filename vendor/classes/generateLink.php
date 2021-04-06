@@ -47,6 +47,5 @@ class generateLink
                 $arLink=false;
         }
         return $arLink;
-
     }
 }

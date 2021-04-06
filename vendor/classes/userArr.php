@@ -30,7 +30,6 @@ class userArr
 
             ]
         );
-
         while  ($arUgroup = $result->fetch()) {
             $arUser=$arUgroup;
         }
