@@ -47,6 +47,11 @@ class processArr
             $this->arrDump['work_end']=$arrWork_end;
             $this->arrDump['work_company']=$arrWork_company;
             $this->arrDump['work_position']=$arrWork_position;
+            if($key==='data_b'){
+                $date=explode('.',$this->arrDump[$key]);
+                $date=$date[2].'-'.$date[1].'-'.$date[0];
+                $this->arrDump[$key]=$date;
+            }
             $PROP = $this->arrDump;
             $arInfo =
                 [
