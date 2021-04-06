@@ -30,7 +30,7 @@ class processArr
             foreach ($this->arrDump as $key=>$value)
             {
                 echo strpos($key,'work_company') .'<br>';
-                if(strpos('work_company', $key) !== false)
+                if(strpos($key,'work_company') !== false)
                 {
                     $count++;
                     echo $count;
