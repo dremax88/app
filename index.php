@@ -141,7 +141,6 @@ if($arrParams!==false)
             "LINK" => $arrParams['link']
         ),
     ));
-    mail('ramazan.batyaev@yandex.ru', 'My Subject', '$message');
     echo $arrForJson;
 }
 else
