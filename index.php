@@ -41,41 +41,33 @@ function processGetInfo($userID, $typeLink, $initialization, $status)
 
     }
 
-
 //запуск патерна одиночки для инициализации соединения и получения данных с проверкой Api-key
 
 $initialization=initialization::getInit();
 $arrInfo=$initialization::parseArr(61, $_REQUEST, $userID, 'UF_KEY');
 
-
-
 switch ($arrInfo['PROPERTY_VALUES']['type_reg'])
-{
+    {
 
-    case 'negative':
-        $typeLink='UF_LINK';
-        break;
+        case 'negative':
+            $typeLink='UF_LINK';
+            break;
 
-    case 'personal':
-        echo $typeLink='UF_SOTR_LINK';
-        break;
+        case 'personal':
+            echo $typeLink='UF_SOTR_LINK';
+            break;
 
-    case 'advanced':
-        $typeLink='UF_KADRSH';
-        break;
+        case 'advanced':
+            $typeLink='UF_KADRSH';
+            break;
 
-    default:
-        $arrParams=false;
-        break;
-}
-
-if ($arrParams===false){
-    echo 'Error';
-}
+        default:
+            throw new Exception('Error miss type link');
+            break;
+    }
 
 //Проверяем ссылку и применяем статус
 
-$arSelect = ["ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*"];
 $arFilter =
      [
 
@@ -85,18 +77,15 @@ $arFilter =
 
      ];
 
-$elem = CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
+$elem = CIBlockElement::GetList([], $arFilter);
 while($arrEl = $elem->GetNextElement())
     {
-
-         $arElement['FIELDS'] = $arrEl->GetFields();
-         $arElement['PROPERTIES'] = $arrEl->GetProperties();
-
+         $requestLink = $arrEl->GetProperties()['request_url']['VALUE'];
      }
 
 $arrUserLnk=$initialization::UserArr($userID,$typeLink);
 
-$checkLink=array_search($arElement['PROPERTIES']['request_url']['VALUE'], $arrUserLnk['UF_LINK']);
+$checkLink=array_search($requestLink, $arrUserLnk['UF_LINK']);
 
 if( $checkLink!==false )
     {
@@ -110,14 +99,14 @@ else
 //скоплектовали массив и загрузили в инфоблок новый элемент
 
 if($arrInfo)
-{
-    $el=new CIBlockElement;
-    $idUnit=$el->add($arrInfo);
-}
+    {
+        $el=new CIBlockElement;
+        $idUnit=$el->add($arrInfo);
+    }
 else
-{
-    echo 'Error';
-}
+    {
+        throw new Exception('Error Can`t construct $arrInfo');
+    }
 
 // проверили тип анкеты сгенерировали ссылку, через функцию-рефактор
 // 1) создали массив и загрузили в массив ссылок
@@ -128,22 +117,22 @@ $arrParams=processGetInfo($userID,$typeLink,$initialization, $status);
 //В случае успеха вывели json-ответ
 
 if($arrParams!==false)
-{
-    $arrForJson=json_encode($arrParams['arrForJson']);
-    CIBlockElement::SetPropertyValueCode($idUnit, "JsonParam", $arrForJson);
-    CIBlockElement::SetPropertyValueCode($idUnit, "request_url", $arrParams['link']);
-    CIBlockElement::SetPropertyValueCode($idUnit, "status", $arrParams['status']);
-    Event::sendImmediate(array(
-        "EVENT_NAME" => "ANK_LINK",
-        "LID" => "s2",
-        "C_FIELDS" => array(
-            "EMAIL" => $_REQUEST['email'],
-            "LINK" => $arrParams['link']
-        ),
-    ));
-    echo $arrForJson;
-}
+    {
+        $arrForJson=json_encode($arrParams['arrForJson']);
+        CIBlockElement::SetPropertyValueCode($idUnit, "JsonParam", $arrForJson);
+        CIBlockElement::SetPropertyValueCode($idUnit, "request_url", $arrParams['link']);
+        CIBlockElement::SetPropertyValueCode($idUnit, "status", $arrParams['status']);
+        Event::sendImmediate(array(
+            "EVENT_NAME" => "ANK_LINK",
+            "LID" => "s2",
+            "C_FIELDS" => array(
+                "EMAIL" => $_REQUEST['email'],
+                "LINK" => $arrParams['link']
+            ),
+        ));
+        echo $arrForJson;
+    }
 else
-{
-    echo 'Error';
-}
+    {
+        throw new Exception('Error can`t get json request');
+    }
