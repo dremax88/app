@@ -48,6 +48,4 @@ class initialization
         $arUser=new generateLink($idUser,$ufType);
         return $arUser->getGenerateUfLink();
     }
-
-
 }

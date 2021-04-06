@@ -63,6 +63,5 @@ class processArr
             $arInfo = false;
         }
         return $arInfo;
-
     }
 }
