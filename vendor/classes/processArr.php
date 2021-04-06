@@ -50,7 +50,7 @@ class processArr
             if($key==='data_b'){
                 $date=explode('.',$this->arrDump[$key]);
                 $date=$date[2].'-'.$date[1].'-'.$date[0];
-                $this->arrDump[$key]=$date;
+                $this->arrDump['data_b']=$date;
             }
             $PROP = $this->arrDump;
             $arInfo =
