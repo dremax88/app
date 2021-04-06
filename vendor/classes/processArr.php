@@ -48,7 +48,6 @@ class processArr
             $this->arrDump['work_company']=$arrWork_company;
             $this->arrDump['work_position']=$arrWork_position;
             $PROP = $this->arrDump;
-            print_r($PROP);
             $arInfo =
                 [
 
