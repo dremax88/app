@@ -15,6 +15,7 @@ require_once ($_SERVER["DOCUMENT_ROOT"].'/app/vendor/autoload.php');
 use \classes\initialization;
 use Bitrix;
 use Bitrix\Main\Loader;
+use Bitrix\Main\Mail\Event;
 
 //подключение модулей
 
@@ -132,6 +133,14 @@ if($arrParams!==false)
     CIBlockElement::SetPropertyValueCode($idUnit, "JsonParam", $arrForJson);
     CIBlockElement::SetPropertyValueCode($idUnit, "request_url", $arrParams['link']);
     CIBlockElement::SetPropertyValueCode($idUnit, "status", $arrParams['status']);
+    Event::send(array(
+        "EVENT_NAME" => "ANK_LINK",
+        "LID" => "s2",
+        "C_FIELDS" => array(
+            "EMAIL" => $_REQUEST['email'],
+            "LINK" => $arrParams['link']
+        ),
+    ));
     echo $arrForJson;
 }
 else
