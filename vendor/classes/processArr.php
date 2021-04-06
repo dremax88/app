@@ -32,8 +32,12 @@ class processArr
                 if(strpos($key,'work_company') !== false)
                 {
                     $count++;
-                    $arrWork_begin[]=$this->arrDump['work_begin_'.$count];
-                    $arrWork_end[]=$this->arrDump['work_end_'.$count];
+                    $dstart=explode('.',$this->arrDump['work_begin_'.$count]);
+                    $dstart=$dstart[2].'-'.$dstart[1].'-'.$dstart[0];
+                    $arrWork_begin[]=$dstart;
+                    $dend=explode('.',$this->arrDump['work_end_'.$count]);
+                    $dend=$dend[2].'-'.$dend[1].'-'.$dend[0];
+                    $arrWork_end[]=$dend;
                     $arrWork_company[]=$this->arrDump['work_company_'.$count];
                     $arrWork_position[]=$this->arrDump['work_position_'.$count];
                 }
