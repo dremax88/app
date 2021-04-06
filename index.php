@@ -133,7 +133,7 @@ if($arrParams!==false)
     CIBlockElement::SetPropertyValueCode($idUnit, "JsonParam", $arrForJson);
     CIBlockElement::SetPropertyValueCode($idUnit, "request_url", $arrParams['link']);
     CIBlockElement::SetPropertyValueCode($idUnit, "status", $arrParams['status']);
-    Event::send(array(
+    Event::sendImmediate(array(
         "EVENT_NAME" => "ANK_LINK",
         "LID" => "s2",
         "C_FIELDS" => array(
