@@ -41,20 +41,20 @@ class processArr
                     $arrWork_company[]=$this->arrDump['work_company_'.$count];
                     $arrWork_position[]=$this->arrDump['work_position_'.$count];
                 }
+                if($key==='data_b'){
 
+                    $date=explode('.',$this->arrDump[$key]);
+                    $date=$date[2].'-'.$date[1].'-'.$date[0];
+                    $this->arrDump['data_b']=$date;
+                }
             }
             $this->arrDump['work_begin']=$arrWork_begin;
             $this->arrDump['work_end']=$arrWork_end;
             $this->arrDump['work_company']=$arrWork_company;
             $this->arrDump['work_position']=$arrWork_position;
-            if($key=='data_b'){
 
-                $date=explode('.',$this->arrDump[$key]);
-                $date=$date[2].'-'.$date[1].'-'.$date[0];
-                $this->arrDump['data_b']=$date;
-            }
             $PROP = $this->arrDump;
-            print_r($PROP['data_b']);
+
             $arInfo =
                 [
 
