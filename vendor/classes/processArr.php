@@ -52,9 +52,7 @@ class processArr
             $this->arrDump['work_end']=$arrWork_end;
             $this->arrDump['work_company']=$arrWork_company;
             $this->arrDump['work_position']=$arrWork_position;
-
             $PROP = $this->arrDump;
-
             $arInfo =
                 [
 
